@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "node-fetch": "^2.6.1",
+    "typescript": "^4.3.5"
+  },
+  "devDependencies": {
+    "@types/node-fetch": "^2.5.12",
+    "prettier": "^2.3.2"
+  }
+}
