@@ -62,7 +62,42 @@ class Confluence {
     ).then((res) => res.json());
     return this.parseSearchResponse(response);
   }
+
+  async setPage(
+    pageId: string,
+    title: string,
+    currentVersion: number,
+    content: string
+  ): Promise<boolean> {
+    const body = {
+      version: { number: currentVersion + 1 },
+      title: title,
+      type: "page",
+      body: { storage: { value: content, representation: "storage" } },
+    };
+    const response = await fetch(
+      `${this.endpoint}/wiki/rest/api/content/${pageId}`,
+      {
+        body: JSON.stringify(body),
+        headers: {
+          Accept: "application/json",
+          Authorization: `Basic ${this.getApiKey()}`,
+          "Content-Type": "application/json",
+        },
+        method: "PUT",
+      }
+    );
+    return response.status === 200;
+  }
 }
 
-const c = new Confluence("https://autodocument.atlassian.net", "-autodoc-");
-c.getAutodocPages().then((pages) => console.log(pages));
+// EXAMPLE USAGE
+// const c = new Confluence("https://autodocument.atlassian.net", "-autodoc-");
+// c.getAutodocPages().then(async (pages) => {
+//   await c.setPage(
+//     pages[0].id,
+//     pages[0].title,
+//     pages[0].version,
+//     "I just set this!"
+//   );
+// });
