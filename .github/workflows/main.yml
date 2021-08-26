@@ -27,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        uses: Doddj/confluence-integration@v1
+        uses: Doddj/autodoc@v1
         with:
           commit: ${{ github.event.head_commit.message }}
           changes: ${{ github.event.head_commit.message }}
