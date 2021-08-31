@@ -6,7 +6,7 @@ class ImportantClass:
         # Instance variable
         self.var = var
    
-    # Important function 1
+    # Important function
     def importantFunction(self, old_var, new_var):
         return old_var + new_var
 
